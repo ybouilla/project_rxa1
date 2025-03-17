@@ -39,13 +39,7 @@ def compute_heart_cycle_duration(dataset: pd.DataFrame) -> Tuple[np.ndarray, pd.
      cycle_time = np.zeros((len(df)-1,))
      for i in range(len(df)-1):
           cycle_time[i] = _wave_onset[i+1] - _wave_onset[i]
-          # df.at[i, 'cycle_time_1'] = df.at[i+1, 'wave_onset'] - df.at[i, 'wave_onset']
-          # df.at[i, 'cycle_time_2'] = df.at[i+1, 'wave_offset'] - df.at[i, 'wave_offset']
 
-     # mean_1 = df.iloc[:-1, :]['cycle_time_1'].mean()  
-
-     # bpm = mean_1 * 60/1000
-     # print(mean_1, df.iloc[:-1, :]['cycle_time_2'].mean(), )
      return cycle_time, df
 
 
@@ -56,7 +50,7 @@ def compute_mean_heart_rate(cycles: np.array) -> float:
      """
      Returns mean heart rate in bpm: beat per minutes
      """
-     #mean_1 = dataset.iloc[:-1, :]['cycle_time_1'].mean()
+
      mean_1 = np.mean(cycles)
      return float(_convert_cycle_2_bpm(mean_1))
 
@@ -65,7 +59,7 @@ def compute_max_heart_rate(cycles: np.ndarray, df: pd.DataFrame) -> Tuple[float,
      """
      Returns min heart rate of a collection of cycle
      """
-     #min_cycle = dataset.iloc[:-1, :]['cycle_time_1'].min()
+
      min_cycle = np.min(cycles)
      idx_min_cycle = np.argmin(cycles)
      
@@ -75,7 +69,7 @@ def compute_min_heart_rate(cycles: np.ndarray, df: pd.DataFrame) -> float:
      """
      Returns max heart rate of a serie of cycle
      """
-     #max_cycle = dataset.iloc[:-1, :]['cycle_time_1'].max()
+
      max_cycle = np.max(cycles)
      idx_max_cycle = np.argmax(cycles)
      
