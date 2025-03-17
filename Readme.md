@@ -12,7 +12,8 @@ The following project needs the following setup to be launched:
 
 ## Run project
 ```
-conda create -n cardiologs --file requirements.txt
+cd cardiologs_homeworks
+conda env create  --file environment.yml
 conda activate cardiologs
 
 gunicorn --bind 0.0.0.0:5000 wsgi:app
@@ -52,3 +53,5 @@ Missing aspects in the homework
 
 - backend
     - missing documentation in the methods due to lack of time
+    - correct the warning outputed in the logs 
+    - heart rate computation: using the mean of the wave_offest and wave_onset (what I called QRS_time) instead of the wave onset reduces uncertainty by .5 (assuming there is a small but non negligeable uncertainty when measuring wave_onset and wasv_offset)

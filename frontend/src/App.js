@@ -67,7 +67,7 @@ export default function Dashboard(props) {
         },
       });
       console.log('got response', request)
-      //UpdateResponse(request.data)
+
       setUploadMessage(`File uploaded successfully`);
       setResponse(request.data)
     } catch (error) {
@@ -102,34 +102,12 @@ export default function Dashboard(props) {
       console.log('checl val', val)
       setDateValue(val)
   
-      var data = updateResponse(response)
+      var data = response
       setResponse(data)
       
     }
   // update responses
 
-  function updateResponse(){
-    var data = response
-    console.log('check type', typeof(dateValue))
-    if (dateValue){
-      
-      //time -=  dayjs(currentDate).valueOf()
-      console.log('current_time', dateValue.millisecond(), response, time)
-        
-        for (let i =1; i< data.min_cycle.length; i++)
-        {
-          var time =  typeof(data.min_cycle[i]) === Number? data.min_cycle[i]: data.min_cycle[i].valueOf() 
-          data.min_cycle[i] = time + dateValue.valueOf()
-          //data.min_cycle[i] = newTime.format() + String(' '+newTime.millisecond()) 
-          var time =  typeof(data.max_cycle[i]) === Number? data.max_cycle[i]: data.max_cycle[i].valueOf() 
-
-          data.max_cycle[i] = time + dateValue.valueOf() //newTime.format() + String(' '+newTime.millisecond()) 
-        }
-
-    }
-
-    return data
-  }
 
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>

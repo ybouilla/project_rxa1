@@ -35,7 +35,7 @@ def upload_file():
 
 		return redirect(request.url)
 	file = request.files['file']
-	print(file)
+
 	# If the user does not select a file, the browser submits an
 	# empty file without a filename.
 	if file.filename == '':
@@ -44,7 +44,7 @@ def upload_file():
 
 	if file and allowed_file(file.filename):
 		filename = secure_filename(file.filename)
-		file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
 
 		if not os.path.exists(app.config['UPLOAD_FOLDER']):
 			os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -52,7 +52,6 @@ def upload_file():
 
 			file.save(os.path.join(dir, filename))
 			mean_cycle, min_cycle, max_cycle = process_ecg(os.path.join(dir, filename))
-		print("HERE", file=sys.stderr)
 
 		map(float, min_cycle)
 		map(float, max_cycle)

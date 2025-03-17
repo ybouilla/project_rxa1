@@ -27,7 +27,8 @@ function reformatDate(time){
   if (date == null){
     return time
   } else {
-    let r_time = dayjs(time)
+    //console.log('time', time, date.valueOf(), dayjs(time + date.valueOf()).valueOf(), time+date.valueOf())
+    let r_time = dayjs(time + date.valueOf())
     return String(r_time.format() + ' ' + r_time.millisecond())
 
   }

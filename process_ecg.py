@@ -3,7 +3,15 @@ import pandas as pd
 import numpy as np
 import csv
 
+
 def load_ecg_file(file: str) -> pd.DataFrame:
+    """Loads a csv file and converts it into a dataframe, with the following
+    specificities:
+    - column 1 is for the wave type
+    - coulmn 2 is for the wave_onset
+    - column 3 is for the wave offset
+    - column 4 is for the wave tags
+    """
     dataset = {'wave_type':[], 'wave_onset': [], 'wave_offset': [], 'wave_tags': []}
     with open(file, 'r') as f:
         csv_reader = csv.reader(f)
@@ -25,20 +33,21 @@ def compute_heart_cycle_duration(dataset: pd.DataFrame) -> Tuple[np.ndarray, pd.
      Returns a serie with the heart cycle duration for each detected cycle
      """
      df= dataset[dataset['wave_type'] == 'QRS']
-     df['QRS_peek'] = (df['wave_offset'].astype('int32') - df['wave_onset'].astype('int32'))*.5 + df['wave_offset'].astype('int32')
+     df['QRS_peek'] = (df['wave_offset'].astype('int32') - df['wave_onset'].astype('int32'))*.5 + df['wave_onset'].astype('int32')
      # df['cycle_time_1'] = df['wave_onset']
      # df['cycle_time_2'] = df['wave_offset']
-     # df['wave_onset'] = df['wave_onset'].astype('int32')
-     # df['wave_offset'] = df['wave_offset'].astype('int32')
+     df['wave_onset'] = df['wave_onset'].astype('int32')
+     df['wave_offset'] = df['wave_offset'].astype('int32')
      #time_elapsed_1 = df['wave_onset'].tail(1).iat[0] - df['wave_onset'].head(1).iat[0]
 
      df = df.reset_index()
 
      _wave_onset = df['wave_onset'].to_numpy()
      _wave_offset = df['wave_offset'].to_numpy()
+     _wave_qrs = df['QRS_peek'].to_numpy()
      cycle_time = np.zeros((len(df)-1,))
      for i in range(len(df)-1):
-          cycle_time[i] = _wave_onset[i+1] - _wave_onset[i]
+          cycle_time[i] = _wave_qrs[i+1] - _wave_qrs[i]
 
      return cycle_time, df
 
