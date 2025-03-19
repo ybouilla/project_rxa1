@@ -13,13 +13,17 @@ The following project needs the following setup to be launched:
 ## Run project
 ```
 cd cardiologs_homeworks
-conda env create  --file environment.yml
 conda activate cardiologs
+pip install -r requirements.txt
 
 gunicorn --bind 0.0.0.0:5000 wsgi:app
 ```
 and reach [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
+
+## How to use the interface
+
+When reaching the interface, select the file you want to upload and click on `upload`. You can select the date using the upper right date selection. Time will be displayed regarding your timiezone.
 
 ## Run server only
 
@@ -35,6 +39,8 @@ flask –app app.py –debug run
 ## Run web browser (development mode)
 
 ```
+cd frontend
+npm install
 npm start
 
 ```
@@ -47,6 +53,7 @@ Missing aspects in the homework
 
 - front end
     - handling http or bad request error (eg 404)
+    - fixing vulnerabilities pointed out by `npm`
 
 - middleware
     - the software as it is is not suited for production. Some component are missing 
