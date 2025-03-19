@@ -4,14 +4,11 @@ import { alpha } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import AppNavbar from './components/AppNavbar';
 import Header from './components/Header';
 import MainGrid from './components/MainGrid';
-import SideMenu from './components/SideMenu';
 import AppTheme from './shared-theme/AppTheme';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { LocalizationProvider } from '@mui/x-date-pickers';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
@@ -106,16 +103,12 @@ export default function Dashboard(props) {
       setResponse(data)
       
     }
-  // update responses
-
 
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
       <Box sx={{ display: 'flex' }}>
       
-        {/* <AppNavbar /> */}
-        {/* Main content */}
         <Box
           component="main"
           sx={(theme) => ({

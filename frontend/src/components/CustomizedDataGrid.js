@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { columns, rows } from '../internals/data/gridData';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
@@ -22,12 +20,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function reformatDate(time){
-  console.log('time', time)
+
   var date = props.date
-  if (date == null){
+  if (date == null || typeof(time) === 'string'){
     return time
   } else {
-    //console.log('time', time, date.valueOf(), dayjs(time + date.valueOf()).valueOf(), time+date.valueOf())
     let r_time = dayjs(time + date.valueOf())
     return String(r_time.format() + ' ' + r_time.millisecond())
 
@@ -89,45 +86,6 @@ var response= {mean_cycle: '...',
       </Grid>
     </Grid>
   </Box>
-    // <DataGrid
-    //   checkboxSelection
-    //   rows={rows}
-    //   columns={columns}
-    //   getRowClassName={(params) =>
-    //     params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
-    //   }
-    //   initialState={{
-    //     pagination: { paginationModel: { pageSize: 20 } },
-    //   }}
-    //   pageSizeOptions={[10, 20, 50]}
-    //   disableColumnResize
-    //   density="compact"
-    //   slotProps={{
-    //     filterPanel: {
-    //       filterFormProps: {
-    //         logicOperatorInputProps: {
-    //           variant: 'outlined',
-    //           size: 'small',
-    //         },
-    //         columnInputProps: {
-    //           variant: 'outlined',
-    //           size: 'small',
-    //           sx: { mt: 'auto' },
-    //         },
-    //         operatorInputProps: {
-    //           variant: 'outlined',
-    //           size: 'small',
-    //           sx: { mt: 'auto' },
-    //         },
-    //         valueInputProps: {
-    //           InputComponentProps: {
-    //             variant: 'outlined',
-    //             size: 'small',
-    //           },
-    //         },
-    //       },
-    //     },
-    //   }}
-    // />
+
   );
 }

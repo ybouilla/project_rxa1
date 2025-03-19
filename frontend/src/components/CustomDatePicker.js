@@ -55,8 +55,7 @@ ButtonField.propTypes = {
 };
 
 export default function CustomDatePicker(props) {
-  const [value, setValue] = React.useState(dayjs('2023-04-17'));
-  const [open, setOpen] = React.useState(false);
+
 
   const currentDate = new Date();
 
@@ -64,26 +63,12 @@ export default function CustomDatePicker(props) {
   return (
     <Stack>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {/* <DatePicker
-        value={value}
-        label={value == null ? null : value.format('MMM DD, YYYY')}
-        onChange={(newValue) => setValue(newValue)}
-        slots={{ field: ButtonField }}
-        slotProps={{
-          field: { setOpen },
-          nextIconButton: { size: 'small' },
-          previousIconButton: { size: 'small' },
-        }}
-        open={open}
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        views={['day', 'month', 'year']}
-      /> */}
+   
       <DateTimePicker
               views={['year', 'day', 'hours', 'minutes', 'seconds']}
               value={props.date}
               onChange={(e) => {props.onClick(e)}}
-              referenceDate={dayjs(currentDate)}
+              //referenceDate={dayjs(currentDate)}
             />
             <Typography>
               Set time: {props.date == null ? 'no selected date' : props.date.format()}
