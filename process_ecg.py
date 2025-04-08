@@ -46,6 +46,7 @@ def compute_heart_cycle_duration(dataset: pd.DataFrame) -> Tuple[np.ndarray, pd.
      _wave_offset = df['wave_offset'].to_numpy()
      _wave_qrs = df['QRS_peek'].to_numpy()
      cycle_time = np.zeros((len(df)-1,))
+
      for i in range(len(df)-1):
           cycle_time[i] = _wave_qrs[i+1] - _wave_qrs[i]
 

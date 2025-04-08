@@ -1,4 +1,5 @@
-# Cardiologs homeworks`
+# Project rxa1:
+**Description**: provides a web interface to load dataset 
 
 ## Prerequisites
 
@@ -13,7 +14,7 @@ The following project needs the following setup to be launched:
 ## Run project
 ```
 cd cardiologs_homeworks
-conda activate cardiologs
+conda activate dev-env
 pip install -r requirements.txt
 
 gunicorn --bind 0.0.0.0:5000 wsgi:app
@@ -30,13 +31,13 @@ When reaching the interface, select the file you want to upload by clicking firs
 Use the following to run the backend code
 
 ```
-cd cardiologs_homeworks
+cd project_rxa1
 python app.py
 ```
 
 debug mode
 ```
-cd cardiologs_homeworks
+cd project_rxa1
 flask –app app.py –debug run
 ```
 
@@ -44,7 +45,7 @@ flask –app app.py –debug run
 
 Run the following to use the front end in a debug mode
 ```
-cd cardiologs_homeworks/frontend
+cd project_rxa1/frontend
 npm install
 npm start
 
@@ -52,7 +53,7 @@ npm start
 ## Build static files for front-end
 In order to build the react project run:
 ```
-cd cardiologs_homeworks/frontend
+cd project_rxa1/frontend
 npm run build
 ```
 
@@ -63,21 +64,3 @@ Please find dependencies:
 - javascript and react dependencies: [`frontent/package.json`](./frontend/package.json).
 
 Front end template has been taken from [materialGUI examples](https://mui.com/material-ui/getting-started/templates/).
-
-## Missing aspects in the homework
-
-- general 
-    - remove commented piece of code
-    - add unit tests
-
-- front end
-    - handling http or bad request error (eg 404)
-    - fixing vulnerabilities pointed out by `npm`
-
-- middleware
-    - the software as it is is not suited for production. Some components are missing (middleware, testing suit, ...)
-
-- backend
-    - missing documentation in the methods due to lack of time
-    - correct the warning outputed in the logs 
-    - heart rate computation: using the mean of the wave_offest and wave_onset (what I called QRS_time) instead of the wave onset should reduce uncertainty in the measurement (assuming there is a small but non negligeable uncertainty when measuring wave_onset and wasv_offset)

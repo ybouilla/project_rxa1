@@ -1,8 +1,8 @@
 # app.py
 
-import sys
 import tempfile
-from flask import Flask, jsonify, request, redirect
+from typing import Dict
+from flask import Flask, jsonify, request, redirect, Response
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import os
@@ -28,7 +28,7 @@ def allowed_file(filename: str) -> bool:
 		filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/upload', methods=['POST'])
-def upload_file():
+def upload_file() -> Dict[Response, int]:
 
 	# check if the post request has the file part
 	if 'file' not in request.files:
@@ -70,8 +70,9 @@ def upload_file():
 
 
 @app.route('/')
-def index():
+def index() -> Response:
     return app.send_static_file('index.html')
+
 
 if __name__ == '__main__':
 	app.run()
