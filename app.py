@@ -9,12 +9,15 @@ import os
 
 from process_ecg import process_ecg
 
-
+ACTIVATE_CORS = True
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'csv'}
 BUILD_DIR = os.path.join('frontend', 'build')
 app = Flask(__name__, static_folder=BUILD_DIR, static_url_path='/')
-CORS(app)
+
+if ACTIVATE_CORS:
+	CORS(app)  # handling Cross Origin Resource Sharing, making AJAX possible
+
 
 app.config.from_prefixed_env()
 app.static_folder = app.config.get('FRONTEND_PATH', BUILD_DIR)
@@ -53,8 +56,6 @@ def upload_file() -> Dict[Response, int]:
 			file.save(os.path.join(dir, filename))
 			mean_cycle, min_cycle, max_cycle = process_ecg(os.path.join(dir, filename))
 
-		map(float, min_cycle)
-		map(float, max_cycle)
 		resp = {
 			'message': 'ok',
 			'mean_cycle': float(mean_cycle),

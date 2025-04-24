@@ -86,7 +86,7 @@ def compute_min_heart_rate(cycles: np.ndarray, df: pd.DataFrame) -> float:
      return float(_convert_cycle_2_bpm(max_cycle)), float(df.at[idx_max_cycle, 'wave_onset']), float(df.at[idx_max_cycle+1, 'wave_onset'])
 
 
-def process_ecg(file: str) -> List:
+def process_ecg(file: str) -> List[float| Tuple[float]]:
      """
      Computes and returns mean heart rate, minimum and maximum heart rate (in bpm)
      """
