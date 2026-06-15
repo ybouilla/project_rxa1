@@ -53,8 +53,6 @@ def upload_file():
 			file.save(os.path.join(dir, filename))
 			mean_cycle, min_cycle, max_cycle = process_ecg(os.path.join(dir, filename))
 
-		map(float, min_cycle)
-		map(float, max_cycle)
 		resp = {
 			'message': 'ok',
 			'mean_cycle': float(mean_cycle),

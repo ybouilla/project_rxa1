@@ -39,6 +39,13 @@ debug mode
 flask --app backend.app:myapp --debug run
 ```
 
+## Run tests (backend only)
+
+run the following command:
+```shell
+python -m pytest
+```
+
 ## Run web browser (development mode)
 
 ```
@@ -49,6 +56,7 @@ npm start
 ```
 npm run build
 ```
+
 
 ## TODO:
 
@@ -66,3 +74,6 @@ npm run build
 
 - shippment:
     - use docker to ship and deploy
+
+- tests:
+    - front end and backend tests
