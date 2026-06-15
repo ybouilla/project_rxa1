@@ -12,15 +12,15 @@ The following project needs the following setup to be launched:
 
 ## Run project
 ### Installation
-```
+```shell
 conda env create  heart_ming_env --file environment.yml
-conda activate 
+conda activate heart_ming_env 
 pip install -r requirements.txt
 
 cd frontend
 npm install
 
-gunicorn --bind 0.0.0.0:5000 wsgi:app
+gunicorn --bind 0.0.0.0:5000 backend.wsgi:app
 ```
 and reach [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
@@ -30,13 +30,13 @@ You will be able to access to the following interface where you can upload your 
 
 ## Run server only
 
-```
-python app.py
+```shell
+python -m backend.app
 ```
 
 debug mode
-```
-flask –app app.py –debug run
+```shell
+flask --app backend.app:myapp --debug run
 ```
 
 ## Run web browser (development mode)

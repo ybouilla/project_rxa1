@@ -7,12 +7,12 @@ from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import os
 
-from process_ecg import process_ecg
+from backend.process_ecg import process_ecg
 
 
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'csv'}
-BUILD_DIR = os.path.join('frontend', 'build')
+BUILD_DIR = os.path.join('..', 'frontend', 'build')
 app = Flask(__name__, static_folder=BUILD_DIR, static_url_path='/')
 CORS(app)
 
