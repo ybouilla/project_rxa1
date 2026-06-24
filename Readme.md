@@ -28,6 +28,9 @@ You will be able to access to the following interface where you can upload your 
 
 ![ecg tools](imgs/ecg_tool.png)
 
+![ecg_movie](imgs/ecg_interface.gif)
+
+
 ## Run server only
 
 ```
