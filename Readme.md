@@ -31,6 +31,23 @@ You will be able to access to the following interface where you can upload your 
 ![ecg_movie](imgs/ecg_interface.gif)
 
 
+### Run with docker (recommanded)
+
+### 1. Deploy with Docker (recommanded)
+
+From the root folder, enter: 
+```shell
+
+docker build -t webserver .
+
+docker run  --rm -it  -p 5000:5000 webserver --name webserver webserver
+# or
+docker run -d \
+  --name webserver webserver\
+  -p 5000:5000 \
+    webserver
+```
+
 ## Run server only
 
 ```shell
