@@ -44,7 +44,7 @@ class TestEcgProcessing:
             }
         )
 
-    def test_load_ecg_file(self, sample_ecg_file):
+    def test_01_load_ecg_file(self, sample_ecg_file):
         df = load_ecg_file(sample_ecg_file)
 
         assert len(df) == 4
@@ -58,7 +58,7 @@ class TestEcgProcessing:
         assert df.loc[0, "wave_tags"] == "tag1"
         assert df.loc[1, "wave_tags"] is None
 
-    def test_load_empty_file(self, tmp_path):
+    def test_02_load_empty_file(self, tmp_path):
         file_path = tmp_path / "empty.csv"
         file_path.write_text("")
 
@@ -66,7 +66,7 @@ class TestEcgProcessing:
 
         assert df.empty
 
-    def test_compute_heart_cycle_duration(self, qrs_dataframe):
+    def test_03_compute_heart_cycle_duration(self, qrs_dataframe):
         cycles, df = compute_heart_cycle_duration(qrs_dataframe)
 
         np.testing.assert_array_equal(
@@ -76,7 +76,7 @@ class TestEcgProcessing:
 
         assert "QRS_peek" in df.columns
 
-    def test_compute_heart_cycle_duration_single_qrs(self):
+    def test_04_compute_heart_cycle_duration_single_qrs(self):
         df = pd.DataFrame(
             {
                 "wave_type": ["QRS"],
@@ -90,14 +90,14 @@ class TestEcgProcessing:
 
         assert len(cycles) == 0
 
-    def test_compute_mean_heart_rate(self):
+    def test_05_compute_mean_heart_rate(self):
         cycles = np.array([1000.0, 1000.0])
 
         bpm = compute_mean_heart_rate(cycles)
 
         assert bpm == 60.0
 
-    def test_compute_max_heart_rate(self):
+    def test_06_compute_max_heart_rate(self):
         cycles = np.array([1000.0, 800.0])
 
         df = pd.DataFrame(
@@ -112,7 +112,7 @@ class TestEcgProcessing:
         assert start == 1100.0
         assert end == 1900.0
 
-    def test_compute_min_heart_rate(self):
+    def test_07_compute_min_heart_rate(self):
         cycles = np.array([1000.0, 1200.0])
 
         df = pd.DataFrame(
@@ -135,7 +135,7 @@ class TestEcgProcessing:
             (1200.0, 50.0),
         ],
     )
-    def test_bpm_conversion(self, cycle, expected_bpm):
+    def test_08_bpm_conversion(self, cycle, expected_bpm):
         bpm = compute_mean_heart_rate(np.array([cycle]))
 
         assert bpm == expected_bpm
